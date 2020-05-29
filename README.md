@@ -5,7 +5,7 @@ Chromebrew
 
 Package manager for Chrome OS
 
-Fork, mostly with the endevour of enabling clean `user / development \ system` interfacing with minimal chrome os image modification.
+Enabling clean `user / development \ system` interfacing with minimal chrome os image modification.
 
 Chat with us!
 -------------
