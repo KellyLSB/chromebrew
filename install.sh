@@ -4,9 +4,12 @@
 set -e
 
 #chromebrew directories
-OWNER="skycocker"
-REPO="chromebrew"
-BRANCH="master"
+: ${CREW_GIT_OWNER:-"skycocker"}
+: ${CREW_GIT_REPO:-"chromebrew"}
+: ${CREW_GIT_BRANCH:-"master"}
+: ${OWNER:-"$CREW_GIT_OWNER"}
+: ${REPO:-"$CREW_GIT_REPO"}
+: ${BRANCH:-"$CREW_GIT_BRANCH"}
 URL="https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}"
 CREW_PREFIX="${CREW_PREFIX:-/usr/local}"
 CREW_LIB_PATH="${CREW_PREFIX}/lib/crew/"
