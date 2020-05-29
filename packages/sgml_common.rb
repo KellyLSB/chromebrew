@@ -26,10 +26,16 @@ class Sgml_common < Package
   def self.patch
     system 'wget http://www.linuxfromscratch.org/patches/blfs/svn/sgml-common-0.6.3-manpage-1.patch'
     abort 'Checksum mismatch. :/ Try again.'.lightred unless Digest::SHA256.hexdigest( File.read('sgml-common-0.6.3-manpage-1.patch') ) == '50d93af704a0869faf8fedf5d23b1a9f90fff6499f4c11cf4addb5e460b7b58b'
-    system 'patch -Np1 -i sgml-common-0.6.3-manpage-1.patch && autoreconf -f -i'
+    system 'patch -Np1 -i sgml-common-0.6.3-manpage-1.patch'
   end
 
   def self.build
+    system 'rm mkinstalldirs missing COPYING INSTALL install-sh'
+    system "ln -s #{CREW_PREFIX}/usr/local/share/automake-1.16/mkinstalldirs"
+    system "ln -s #{CREW_PREFIX}/usr/local/share/automake-1.16/missing"
+    system "ln -s #{CREW_PREFIX}/usr/local/share/automake-1.16/install-sh"
+    system "ln -s #{CREW_PREFIX}/usr/local/share/automake-1.16/COPYING"
+    system "ln -s #{CREW_PREFIX}/usr/local/share/automake-1.16/INSTALL"
     system './configure',
            "--prefix=#{CREW_PREFIX}",
            "--sysconfdir=#{CREW_PREFIX}/etc"
@@ -47,9 +53,9 @@ class Sgml_common < Package
   end
 
   def self.postinstall
-    system "install-catalog --add #{CREW_PREFIX}/etc/sgml/sgml-ent.cat \
-            #{CREW_PREFIX}/share/sgml/sgml-iso-entities-8879.1986/catalog &&
-            install-catalog --add #{CREW_PREFIX}/etc/sgml/sgml-docbook.cat \
-            #{CREW_PREFIX}/etc/sgml/sgml-ent.cat"
+    system "install-catalog --add #{CREW_PREFIX}/usr/local/etc/sgml/sgml-ent.cat \
+            #{CREW_PREFIX}/usr/local/share/sgml/sgml-iso-entities-8879.1986/catalog &&
+            install-catalog --add #{CREW_PREFIX}/usr/local/etc/sgml/sgml-docbook.cat \
+            #{CREW_PREFIX}/usr/local/etc/sgml/sgml-ent.cat"
   end
 end

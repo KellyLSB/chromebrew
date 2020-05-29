@@ -59,9 +59,9 @@ class Gtk3 < Package
 
   def self.postinstall
     # generate schemas
-    system "glib-compile-schemas #{CREW_PREFIX}/share/glib-2.0/schemas"
+    system "glib-compile-schemas #{CREW_PREFIX}/usr/local/share/glib-2.0/schemas"
     # update mime database
-    system "update-mime-database #{CREW_PREFIX}/share/mime"
+    system "update-mime-database #{CREW_PREFIX}/usr/local/share/mime"
     puts
     puts "To add basic settings, execute the following:".lightblue
     puts "mkdir #{HOME}/.config/gtk-3.0".lightblue
