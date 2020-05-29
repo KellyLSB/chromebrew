@@ -5,6 +5,8 @@ Chromebrew
 
 Package manager for Chrome OS
 
+Fork, mostly with the endevour of enabling clean `user / development \ system` interfacing with minimal chrome os image modification.
+
 Chat with us!
 -------------
 <p><em>Discord is not currently syncing messages with Slack</em></p>
